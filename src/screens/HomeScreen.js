@@ -6,7 +6,7 @@ import { AdBanner } from '../components/AdBanner';
 import { theme } from '../theme/theme';
 
 export const HomeScreen = () => {
-  const { data: price, isLoading, isError, history } = useGoldPrice();
+  const { data: price, isLoading, isError, error, history } = useGoldPrice();
 
   // Basic diff from the last recorded point
   const previousPoint = history?.length > 1 ? history[history.length - 2] : null;
@@ -26,7 +26,7 @@ export const HomeScreen = () => {
           {isLoading ? (
             <ActivityIndicator size="large" color={theme.colors.primary} style={styles.loader} />
           ) : isError ? (
-            <Text style={{ color: theme.colors.danger }}>Error fetching price</Text>
+            <Text style={{ color: theme.colors.danger, textAlign: 'center', marginTop: 10 }}>Hata: {error?.message || "Bilinmeyen API Hatası!"}</Text>
           ) : (
             <>
               <Text variant="displayMedium" style={styles.priceText}>

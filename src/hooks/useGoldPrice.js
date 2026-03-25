@@ -50,6 +50,7 @@ export const useGoldPrice = () => {
       return price;
     },
     refetchInterval: 60 * 1000, // Fetch every 60s
+    retry: false, // Do not retry silently, show errors instantly
   });
 
   return { ...query, history };
